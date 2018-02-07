@@ -1,6 +1,7 @@
+import './style.css';
 (function () {
 
-    var save;
+    let save;
 
     const addBtn = document.getElementById('addBtn');
     const inputRef = document.getElementById('myInput');
@@ -13,21 +14,35 @@
         elem.appendChild(text);
         return elem;
     }
+
+    //Метод  добавления input
+    const createInput = (config, newValue) => {
+        const input = createElem(config);
+        input.value = newValue;
+        input.addEventListener("keyup", (e) => {
+            if (e.keyCode === 13) {
+                input.parentElement.firstChild.textContent = input.value;
+                input.parentElement.lastChild.style.display='none';
+            }
+        });
+        return input;
+    }
+
     //Создаём метод добавления задач и добавляем элементы для новых обработчиков.
     addBtn.addEventListener('click', () => {
         const inputValue = inputRef.value;
-        const li = createElem({ type: 'li', className: '', view: inputValue });
+        const li = createElem({ type: 'li', className: 'li', view: inputValue });
 
         if (inputValue === "") {
             alert('add you task');
         } else {
             ulRef.appendChild(li);
         }
-
         inputRef.value = "";
         li.appendChild(createElem({ type: 'span', className: 'edit', view: "edit" }));
         li.appendChild(createElem({ type: 'span', className: 'close', view: "\u00D7" }));
-        li.appendChild(createElem({ type: 'input', className: 'hide' })).value = inputValue;
+        li.appendChild(createInput({ type: 'input', className: 'hide' }, inputValue))
+
         saveTask();
     });
     //Метод для зачёркивания,удаленя,изменения задачи.
@@ -42,20 +57,9 @@
             parentNode.remove();
         }
         if (className === "edit") {
-            const inputTask = parentNode.lastChild;
+            
+       parentNode.lastChild.style.display='block';
 
-        }
-        if (className === "hide") {
-            const inputTask = parentNode.lastChild;
-            let result = inputTask.value;
-            inputTask.addEventListener("keyup", (e) => {
-                //event.preventDefault();
-
-                if (e.KeyCode === 13) {
-                    parentNode.firstChild.textContent = result;
-                    console.log('test');
-                }
-            });
         }
         saveTask();
     }, false);
@@ -67,4 +71,4 @@
     //Загрузка заданий из localStorage .
     save = JSON.parse(localStorage.getItem("save"));
     document.getElementById('myUl').innerHTML = save;
-})()
+})();
