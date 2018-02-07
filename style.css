@@ -1,0 +1,56 @@
+
+.hide{
+    display: none;
+}
+ul li.checked {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
+/*li{
+    padding: 2px;
+    border: 1px solid silver;
+    display: flex;
+}*/
+#myDIV{
+        display: flex;
+        justify-content: space-between;
+        align-content: space-between;
+        align-items: center;
+        flex-direction: column;
+}
+#myUl{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+.li{
+
+   /* align-content: space-between;*/
+    justify-content: space-around;
+   /* flex-direction: row;*/
+}
+.edit{
+    align-content: space-between;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.close {
+    flex-direction: space-between;
+    align-items: flex-end
+
+}
+
+#addBtn {
+    padding: 10px;
+    width: 8.1%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
