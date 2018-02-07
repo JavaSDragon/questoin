@@ -42,20 +42,21 @@
             parentNode.remove();
         }
         if (className === "edit") {
-            const inputTask=parentNode.lastChild;
-           // console.log(inputTask.value);
-           /* inputTask.addEventListener("keypress",(event)=>{
-                event.preventDefault();
-                let result=inputTask.value
-                if (event.KeyCode == 13){
-                    parentNode.firstChild.textContent = result;
-                }
-            })*/
-            /*let result = prompt('Update you task', '');
-            parentNode.firstChild.textContent = result;*/
+            const inputTask = parentNode.lastChild;
+
         }
-       
-    
+        if (className === "hide") {
+            const inputTask = parentNode.lastChild;
+            let result = inputTask.value;
+            inputTask.addEventListener("keyup", (e) => {
+                //event.preventDefault();
+
+                if (e.KeyCode === 13) {
+                    parentNode.firstChild.textContent = result;
+                    console.log('test');
+                }
+            });
+        }
         saveTask();
     }, false);
     //Метод сохранения задач в localStorage.
